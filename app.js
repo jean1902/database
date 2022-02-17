@@ -1,13 +1,13 @@
 let express = require('express');
-
 let app = express();
 let accueil = require("./router/PageIndex");
 let inscription = require("./router/inscriptionRouter");
+let mysql = require('mysql')
 const db = require('./database/database');
 
 db.connect(function (err) {
     if(!err) {
-        console.log('eeee');
+        console.log('connection reussi');
         app.use(express.static('public'));
         app.set('view engine', 'ejs')
         app.use('/', accueil);
@@ -25,4 +25,6 @@ db.connect(function (err) {
 
 
 
-app.listen(8080)
+app.listen(8080 ,()=>{
+    console.log('connect port 8080');
+})
